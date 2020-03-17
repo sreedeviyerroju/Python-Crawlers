@@ -1,0 +1,8 @@
+import requests
+from bs4 import BeautifulSoup
+url="https://www.imdb.com/chart/top/?ref_=nv_mv_250"
+s=BeautifulSoup(requests.get(url).text,"html.parser")
+links = [tag.attrs.get('href') for tag in s.select('td.titleColumn a')] # Stores the links in a list
+
+for tag in s.select('td.titleColumn a'): #print movie names
+    print(tag.contents)
